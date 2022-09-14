@@ -11,8 +11,11 @@ struct ContentView: View {
     
     @State var chosen = ""
     
-    @State var emojis = ["🫡", "🤯", "🕺🏽", "💛", "🔥", "🫥", "💩","💀"]
+    @State var chosen2 = ""
     
+    @State var emojis = ["🫡", "🤯", "🕺🏽", "🤍", "🔥", "😭", "💩","💀", "🫠", "🥰"]
+    
+    @State var memes = ["wt1", "wt2", "wt4", "wt5", "wt7", "wt8", "wt9", "wt10" , "wt11"]
     
     var body: some View {
         
@@ -25,16 +28,28 @@ struct ContentView: View {
             
             VStack {
                 
-                Text("Pick the emoji that represents you the most")
+                Text("Pick the emoji & the meme that represents you the most")
                     .font(.system(size: 30))
-                    .foregroundColor(.mint)
+//                    .foregroundColor(.mint)
                     .bold()
                     .multilineTextAlignment(.center)
-                
-                Text(chosen)
-                    .font(.system(size: 80))
-                    .frame(width: 100, height: 100, alignment: .center)
                     .padding()
+                
+                HStack {
+                    
+                    Text(chosen)
+                        .font(.system(size: 80))
+                        .frame(width: 100, height: 100, alignment: .center)
+                        .padding()
+                    
+                    Image(chosen2)
+                        .resizable()
+                        .frame(width: 120, height: 120, alignment: .center)
+                        .padding()
+                }
+                
+                
+                
                     
                 
                 ScrollView(.horizontal) {
@@ -43,21 +58,55 @@ struct ContentView: View {
                             HStack {
                                 
                                 Text(emoji)
-                                    .font(.system(size: 80))
+                                    .font(.system(size: 60))
+                                    .shadow(radius: 40)
                                     .padding()
                                     .onTapGesture {
                                         chosen = emoji
                                     }
                     }
                     
-            }
+                        }
                         
+//                        .background(.yellow)
+//                            .colorMultiply(.white)
+        }
+                }
                         
+                     
+                ScrollView(.horizontal) {
+                    
+                    
+                    HStack {
+                        ForEach (memes, id: \.self) { meme in
+                            HStack {
+                                
+                                Image(meme)
+                                    .resizable()
+                                    .frame(width: 100, height: 100, alignment: .center)
+                                    
+                                    .padding()
+                                    .onTapGesture {
+                                        
+                                        chosen2 = meme
+                                    }
+                            }.shadow(radius: 20)
+                            
+                            
+                            
+                        }
+//                        .background(.yellow)
+                    
+                    
+                    
+                    
+                }
+                    
+                    
+                    
+        }
                 
-                    
-                    
-                    
-                    
+                
                     
                     
                     
@@ -137,7 +186,7 @@ struct ContentView: View {
             
         
     }
-}
+
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
@@ -145,4 +194,4 @@ struct ContentView_Previews: PreviewProvider {
     }
 }
 
-}
+
